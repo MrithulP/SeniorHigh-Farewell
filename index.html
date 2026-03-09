@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A heartfelt farewell from the Class of 2025 - Oshwal Academy Nairobi Senior High">
+    <title>Class of 2025 | Oshwal Academy Nairobi</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="./assets/css/main.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <p class="loading-text">Preparing your surprise...</p>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-inner">
+                <div class="logo">
+                    <img src="./assets/images/logo2.png" alt="OAN Logo" class="logo-image">
+                    <span class="logo-text">OAN Senior High</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <span class="badge">Class of 2025</span>
+                    <h1 class="hero-title">A Heartfelt Farewell</h1>
+                    <p class="hero-text">
+                        From the graduating class to the teachers who shaped our journey. 
+                        Discover the messages we've left for you—filled with gratitude, 
+                        memories, and the lasting impact you've made on our lives.
+                    </p>
+                    <button id="searchTrigger" class="search-button">
+                        <span>Search for your name</span>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M9 17A8 8 0 1 0 9 1a8 8 0 0 0 0 16zM18 18l-4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </button>
+                </div>
+                
+                <div class="hero-visual">
+                    <div class="image-placeholder">
+                        <span class="placeholder-text">Hero Image</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">With Heartfelt Gratitude</h2>
+                <p class="section-description">
+                    A collection of memories and messages from the students whose lives you've touched
+                </p>
+            </div>
+            
+            <div class="image-placeholder" style="margin-bottom: 4rem;">
+                <span class="placeholder-text">Feature Image</span>
+            </div>
+            
+            <div class="cards">
+                <div class="card">
+                    <div class="card-icon">📚</div>
+                    <h3 class="card-title">What is this?</h3>
+                    <p class="card-text">
+                        A digital keepsake filled with heartfelt messages from your students. 
+                        Each message is a token of appreciation for the wisdom, patience, and 
+                        dedication you've shown us throughout our journey.
+                    </p>
+                </div>
+                
+                <div class="card">
+                    <div class="card-icon">💝</div>
+                    <h3 class="card-title">Why we made this</h3>
+                    <p class="card-text">
+                        As the graduating Class of 2025, we wanted to leave something meaningful behind—
+                        a reminder of the unforgettable, sometimes chaotic, but always spirited batch 
+                        that we were, and the teachers who guided us.
+                    </p>
+                </div>
+                
+                <div class="card">
+                    <div class="card-icon">🎓</div>
+                    <h3 class="card-title">How it works</h3>
+                    <p class="card-text">
+                        Simply click the search button and type your name. When it appears in the list, 
+                        click it to reveal a collection of messages from students whose lives you've 
+                        touched. Prepare for some heartwarming surprises!
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Section -->
+    <section class="section section-alt">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">A Message from Our Class</h2>
+                <p class="section-description">Watch our heartfelt tribute video</p>
+            </div>
+            
+            <div class="video-placeholder">
+                <span class="placeholder-text">Tribute Video</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <h3 class="footer-title">Thank You</h3>
+                <p class="footer-text">
+                    For the lessons, the laughter, and the lasting impact you've made on our lives.
+                </p>
+                <div class="footer-line"></div>
+                <p class="footer-credits">
+                    Made with love by the Class of 2025
+                    <span class="footer-separator">·</span>
+                    Oshwal Academy Nairobi
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Search Modal -->
+    <div id="searchModal" class="modal">
+        <div class="modal-content">
+            <button id="closeModal" class="modal-close" aria-label="Close">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                    <path d="M18 6L6 18M6 6l12 12"/>
+                </svg>
+            </button>
+            <input 
+                type="text" 
+                id="searchBox" 
+                class="search-input"
+                placeholder="Type your name..."
+                autocomplete="off"
+            >
+            <ul id="searchResults" class="results"></ul>
+        </div>
+    </div>
+
+    <!-- Overlay -->
+    <div id="overlay" class="overlay"></div>
+
+    <!-- Scripts -->
+    <script src="./assets/js/main.js"></script>
+</body>
+</html>
