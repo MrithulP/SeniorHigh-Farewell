@@ -1,0 +1,554 @@
+/* ========================================
+   TEACHER PAGE - ELEGANT & MINIMAL
+   Horizontal scrolling carousel with infinite cycling
+   ======================================== */
+
+:root {
+    --primary: #6366f1;
+    --primary-dark: #4f46e5;
+    --text: #0f172a;
+    --text-light: #64748b;
+    --text-lighter: #94a3b8;
+    --border: #e2e8f0;
+    --bg: #ffffff;
+    --bg-alt: #f8fafc;
+    
+    --ease: cubic-bezier(0.4, 0, 0.2, 1);
+    --ease-out: cubic-bezier(0, 0, 0.2, 1);
+}
+
+/* Reset & Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--text);
+    background: var(--bg);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* Loading Screen */
+.loading-screen {
+    position: fixed;
+    inset: 0;
+    background: var(--bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+
+.loading-screen.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.loading-content {
+    text-align: center;
+}
+
+.loading-spinner {
+    width: 40px;
+    height: 40px;
+    margin: 0 auto 1rem;
+    border: 3px solid var(--border);
+    border-top-color: var(--primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.loading-text {
+    color: var(--text-light);
+    font-size: 0.95rem;
+}
+
+/* Navigation */
+.nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    z-index: 1000;
+    transition: all 0.3s var(--ease);
+}
+
+.nav-inner {
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--text);
+}
+
+.nav-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.625rem 1.25rem;
+    background: var(--bg-alt);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s var(--ease);
+}
+
+.nav-back:hover {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2);
+}
+
+.nav-back svg {
+    opacity: 0.8;
+}
+
+/* Hero */
+.hero {
+    padding: 8rem 0 4rem;
+    text-align: center;
+}
+
+.hero-content {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.badge {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-light);
+    margin-bottom: 1.5rem;
+}
+
+.hero-title {
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+}
+
+.hero-subtitle {
+    font-size: 1.25rem;
+    color: var(--text-light);
+    margin-bottom: 0.75rem;
+}
+
+.hero-instruction {
+    font-size: 1rem;
+    color: var(--text-lighter);
+}
+
+/* Carousel Section */
+.carousel-section {
+    padding: 3rem 0 6rem;
+    overflow: hidden;
+}
+
+.carousel-container {
+    position: relative;
+    max-width: 100%;
+}
+
+.carousel-wrapper {
+    overflow: hidden;
+    margin: 0 4rem;
+}
+
+.carousel-track {
+    display: flex;
+    gap: 2rem;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding: 2rem 0;
+    
+    /* Hide scrollbar but keep functionality */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    
+    /* Prevent browser auto-scroll behavior on focus */
+    scroll-padding: 0;
+}
+
+.carousel-track::-webkit-scrollbar {
+    display: none;
+}
+
+/* Ensure cloned cards are visually identical */
+.carousel-track .clone {
+    pointer-events: auto;
+}
+
+/* Navigation Buttons */
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s var(--ease);
+    z-index: 10;
+    color: var(--text);
+}
+
+.carousel-btn:hover {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: white;
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.25);
+}
+
+.carousel-btn:active {
+    transform: translateY(-50%) scale(1);
+}
+
+.carousel-prev {
+    left: 0;
+}
+
+.carousel-next {
+    right: 0;
+}
+
+/* Cards */
+.card {
+    min-width: 380px;
+    height: 480px;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    scroll-snap-align: center;
+    flex-shrink: 0;
+    transition: all 0.3s var(--ease);
+    cursor: pointer;
+    position: relative;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+    border-color: var(--primary);
+}
+
+/* Instruction Card */
+.instruction-card {
+    background: var(--bg-alt);
+    cursor: default;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.instruction-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+    border-color: var(--border);
+}
+
+.instruction-content {
+    max-width: 300px;
+    padding: 2rem;
+}
+
+.instruction-content svg {
+    color: var(--primary);
+    margin-bottom: 1.5rem;
+}
+
+.instruction-content h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.instruction-content p {
+    font-size: 1rem;
+    color: var(--text-light);
+    line-height: 1.7;
+}
+
+/* Message Card - Flip Effect */
+.message-card {
+    perspective: 1000px;
+}
+
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+.message-card.flipped .card-inner {
+    transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 24px;
+    padding: 3rem;
+}
+
+.card-front {
+    background: white;
+}
+
+.card-back {
+    background: var(--bg-alt);
+    transform: rotateY(180deg);
+}
+
+.card-name {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: -0.02em;
+    text-align: center;
+}
+
+.card-hint {
+    position: absolute;
+    bottom: 2rem;
+    font-size: 0.875rem;
+    color: var(--text-lighter);
+    opacity: 0;
+    transition: opacity 0.3s var(--ease);
+}
+
+.card:hover .card-hint {
+    opacity: 1;
+}
+
+.card-quote {
+    font-size: 6rem;
+    color: var(--primary);
+    opacity: 0.15;
+    line-height: 1;
+    margin-bottom: -2rem;
+    font-family: Georgia, serif;
+    align-self: flex-start;
+}
+
+.card-message {
+    font-size: 1.25rem;
+    color: var(--text);
+    line-height: 1.7;
+    text-align: center;
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+.card-author {
+    font-size: 1.125rem;
+    color: var(--text-light);
+    font-weight: 500;
+    margin-top: 2rem;
+    align-self: flex-end;
+}
+
+/* Footer */
+.footer {
+    background: var(--text);
+    color: rgba(255, 255, 255, 0.9);
+    padding: 4rem 0;
+}
+
+.footer-content {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.footer-title {
+    font-size: 2rem;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+}
+
+.footer-text {
+    font-size: 1.125rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 2rem;
+}
+
+.footer-line {
+    width: 60px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.2);
+    margin: 2rem auto;
+}
+
+.footer-credits {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.footer-separator {
+    margin: 0 0.5rem;
+    opacity: 0.5;
+}
+
+/* Responsive */
+@media (max-width: 968px) {
+    .carousel-wrapper {
+        margin: 0 3rem;
+    }
+    
+    .card {
+        min-width: 340px;
+        height: 440px;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 0 1.5rem;
+    }
+    
+    .hero {
+        padding: 7rem 0 3rem;
+    }
+    
+    .carousel-wrapper {
+        margin: 0 2.5rem;
+    }
+    
+    .carousel-btn {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .card {
+        min-width: 320px;
+        height: 420px;
+    }
+    
+    .card-front,
+    .card-back {
+        padding: 2rem;
+    }
+    
+    .card-name {
+        font-size: 1.75rem;
+    }
+    
+    .card-message {
+        font-size: 1.125rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-inner {
+        height: 64px;
+    }
+    
+    .nav-title {
+        font-size: 1rem;
+    }
+    
+    .nav-back {
+        padding: 0.5rem 1rem;
+        font-size: 0.875rem;
+    }
+    
+    .hero {
+        padding: 6rem 0 2rem;
+    }
+    
+    .carousel-wrapper {
+        margin: 0 2rem;
+    }
+    
+    .carousel-btn {
+        width: 36px;
+        height: 36px;
+    }
+    
+    .card {
+        min-width: 300px;
+        height: 400px;
+    }
+    
+    .card-front,
+    .card-back {
+        padding: 1.5rem;
+    }
+    
+    .card-name {
+        font-size: 1.5rem;
+    }
+    
+    .card-message {
+        font-size: 1rem;
+    }
+    
+    .card-quote {
+        font-size: 4rem;
+    }
+}
