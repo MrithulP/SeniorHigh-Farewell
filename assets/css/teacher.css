@@ -200,27 +200,13 @@ body {
 .carousel-track {
     display: flex;
     gap: 2rem;
-    overflow-x: auto;
-    scroll-behavior: smooth;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
     padding: 2rem 0;
-    
-    /* Hide scrollbar but keep functionality */
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    
-    /* Prevent browser auto-scroll behavior on focus */
-    scroll-padding: 0;
+    cursor: grab;
+    user-select: none;
 }
 
-.carousel-track::-webkit-scrollbar {
-    display: none;
-}
-
-/* Ensure cloned cards are visually identical */
-.carousel-track .clone {
-    pointer-events: auto;
+.carousel-track:active {
+    cursor: grabbing;
 }
 
 /* Navigation Buttons */
