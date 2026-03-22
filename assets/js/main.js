@@ -27,7 +27,7 @@ function initializeSearch() {
     
     const teachers = [
         { name: "Mr. Vitalis Mugo", page: "./pages/mr-mugo.html" },
-        { name: "Mrs. Sharmila Sharma", page: "./pages/mrs-sharma.html" },
+        { name: "Mrs. Sharma", page: "./pages/mrs-sharma.html" },
         { name: "Mr. Simon Nganga", page: "./pages/mr-nganga.html" },
         { name: "Mr. Raphael Kiunguti Nyaga", page: "./pages/mr-nyaga.html" },
         { name: "Mr. Daniel Kyale", page: "./pages/mr-daniel.html" },
