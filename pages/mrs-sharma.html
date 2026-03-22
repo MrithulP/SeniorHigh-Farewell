@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messages for Mrs. Sharma | Class of 2025</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="../assets/css/teacher.css">
+    
+    <!-- Page Transition Animations -->
+    <style>
+        /* Fade in page on load */
+        body {
+            animation: fadeIn 0.5s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Smooth transitions for navigation */
+        .nav-back {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .nav-back::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .nav-back:hover::before {
+            left: 100%;
+        }
+        
+        /* Stagger animation for cards */
+        .card {
+            animation: slideIn 0.6s ease-out backwards;
+        }
+        
+        .card:nth-child(1) { animation-delay: 0.1s; }
+        .card:nth-child(2) { animation-delay: 0.2s; }
+        .card:nth-child(3) { animation-delay: 0.3s; }
+        .card:nth-child(4) { animation-delay: 0.4s; }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        /* Hero fade in */
+        .hero-content {
+            animation: fadeInUp 0.8s ease-out;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <p class="loading-text">Loading messages...</p>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="container">
+            <div class="nav-inner">
+                <div class="nav-title">Messages for You</div>
+                <a href="../index.html" class="nav-back">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                        <path d="M10 18L2 10l8-8M2 10h16"/>
+                    </svg>
+                    <span>Back</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <span class="badge">Heartfelt Messages</span>
+                <h1 class="hero-title">Mrs. Sharma</h1>
+                <p class="hero-subtitle">Messages from your students</p>
+                <p class="hero-instruction">Scroll through the carousel and click any card to flip it</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Carousel Section -->
+    <section class="carousel-section">
+        <div class="carousel-container">
+            <button class="carousel-btn carousel-prev" aria-label="Previous">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                    <path d="M15 18l-6-6 6-6"/>
+                </svg>
+            </button>
+            
+            <div class="carousel-wrapper">
+                <div class="carousel-track" id="carouselTrack">
+                    <!-- Instruction Card -->
+                    <div class="card instruction-card">
+                        <div class="instruction-content">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                                <circle cx="12" cy="12" r="10"/>
+                                <path d="M12 16v-4M12 8h.01"/>
+                            </svg>
+                            <h3>How to Read</h3>
+                            <p>Scroll horizontally or use the arrow buttons. Click any card to flip and reveal the message.</p>
+                        </div>
+                    </div>
+
+                    <!-- Message 1 -->
+                    <div class="card message-card">
+                        <div class="card-inner">
+                            <div class="card-front">
+                                <div class="card-name">Anonymous</div>
+                                <div class="card-hint">Click to flip</div>
+                            </div>
+                            <div class="card-back">
+                                <div class="card-quote">"</div>
+                                <p class="card-message">
+                                    Thank you for your visionary leadership and unwavering commitment to our success. 
+                                    Your guidance has created an environment where we can thrive and achieve our best.
+                                </p>
+                                <p class="card-author">— Anonymous</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Message 2 -->
+                    <div class="card message-card">
+                        <div class="card-inner">
+                            <div class="card-front">
+                                <div class="card-name">Anonymous</div>
+                                <div class="card-hint">Click to flip</div>
+                            </div>
+                            <div class="card-back">
+                                <div class="card-quote">"</div>
+                                <p class="card-message">
+                                    Thank you for making the hardest decisions and for being a listening ear for all 
+                                    the projects we've introduced during the course of the year. Your input has played 
+                                    a vital role in the success of our projects.
+                                </p>
+                                <p class="card-author">— Anonymous</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Message 3 -->
+                    <div class="card message-card">
+                        <div class="card-inner">
+                            <div class="card-front">
+                                <div class="card-name">Anonymous</div>
+                                <div class="card-hint">Click to flip</div>
+                            </div>
+                            <div class="card-back">
+                                <div class="card-quote">"</div>
+                                <p class="card-message">
+                                    Thank you for being a role model to all students and setting the tone for all the 
+                                    teachers. I appreciate how you always stand on business and keep reminding us to 
+                                    prioritise our education while still being able to enjoy school events with us 
+                                    (such as the cultural day).
+                                </p>
+                                <p class="card-author">— Anonymous</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="carousel-btn carousel-next" aria-label="Next">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                    <path d="M9 18l6-6-6-6"/>
+                </svg>
+            </button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <h3 class="footer-title">With Gratitude</h3>
+                <p class="footer-text">For the wisdom, patience, and lasting impact</p>
+                <div class="footer-line"></div>
+                <p class="footer-credits">
+                    Class of 2025
+                    <span class="footer-separator">·</span>
+                    Oshwal Academy Nairobi
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../assets/js/teacher.js"></script>
+</body>
+</html>
