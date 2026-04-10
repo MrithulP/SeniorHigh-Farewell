@@ -67,7 +67,7 @@ This is a **Beta / Work-in-Progress** version of the project. The core concept a
 
 ## 👥 Contributors
 
-Students of the **2025 Senior High Batch** — the ones who wrote the messages, built the pages, and poured their hearts into this.
+Students of the **Oshwal Academy Nairobi - Senior High 2025 Batch** — the ones who wrote the messages, built the pages, and poured their hearts into this.
 
 ---
 
